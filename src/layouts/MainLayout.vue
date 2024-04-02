@@ -42,6 +42,12 @@ const linksList = [
     icon: "home",
     link: "/home",
   },
+  {
+    titre: "Presence",
+    caption: "go to presence page",
+    icon: "man",
+    link: "/presence",
+  },
 ];
 
 export default defineComponent({

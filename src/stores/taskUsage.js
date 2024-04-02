@@ -8,7 +8,7 @@ export const useTask = defineStore("tasks", {
         do: false,
       },
       {
-        id: 0,
+        id: 1,
         nom: "Rwite some codes",
         do: true,
       },
@@ -26,5 +26,9 @@ export const useTask = defineStore("tasks", {
       return this.task.filter((t) => t.do == false);
     },
   },
-  actions: {},
+  actions: {
+    addTask(task) {
+      this.task.push(task);
+    },
+  },
 });

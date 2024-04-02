@@ -24,14 +24,14 @@
     <div class="input" v-if="filtre == 'form'">
       <q-input v-model="tskname" type="text" label="Task name" />
       <div class="confirm_btn">
-        <q-btn flat color="primary" icon="check" @click="onClick" />
+        <q-btn flat color="primary" icon="check" @click="enregistrer_tache" />
       </div>
     </div>
   </q-page>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onUpdated } from "vue";
 // import { useTaskStore } from "stores/taskstore";
 import { useTask } from "stores/taskUsage";
 
@@ -39,14 +39,21 @@ export default defineComponent({
   name: "IndexPage",
   setup() {
     // const store = useTaskStore();
-    const filtre = ref("all");
-    const s = useTask();
+    const s = ref(useTask());
     const tskname = ref("");
-    console.log(s.get_completed_task);
-    console.log(s.get_task);
-    console.log(s.get_uncompleted_task);
-
-    return { filtre, s, tskname };
+    const filtre = ref("all");
+    const dernier_tache = s.value.task[s.value.task.length - 1];
+    console.log(dernier_tache);
+    const enregistrer_tache = () => {
+      const obj_t = { id: dernier_tache.id++, name: tskname.value, do: false };
+      s.value.addTask(obj_t);
+      tskname.value = "";
+      console.log(s.value.task);
+    };
+    return { filtre, s, tskname, enregistrer_tache };
+  },
+  onUpdated() {
+    console.log("update");
   },
 });
 </script>
