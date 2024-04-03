@@ -48,6 +48,12 @@ const linksList = [
     icon: "man",
     link: "/presence",
   },
+  {
+    titre: "New vue",
+    caption: "go to new vue page",
+    icon: "check",
+    link: "/newVue",
+  },
 ];
 
 export default defineComponent({
